@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+#dot1 {
+  height: 50px;
+  width: 50px;
+  background-color: rgb(255, 0, 0);
+  border-radius: 50%;
+  display: inline-block;
+}
+
+#dot2 {
+  height: 50px;
+  width: 50px;
+  background-color: rgb(0, 255, 13);
+  border-radius: 50%;
+  display: inline-block;
+}
+
+#dot3 {
+  height: 50px;
+  width: 50px;
+  background-color: rgb(25, 0, 255);
+  border-radius: 50%;
+  display: inline-block;
+}
+</style>
+</head>
+<body>
+
+<div style="text-align:center">
+  <h1>Paina ympyrää</h1>
+  <span id="dot1"></span>
+  <span id="dot2"></span>
+  <span id="dot3"></span>
+</div>
+
+<script type="text/javascript">
+  document.getElementById("dot1").onclick = function(){
+    console.log("Red disappeared!");
+    document.getElementById("dot1").style.display = 'none';
+  }
+  document.getElementById("dot2").onclick = function(){
+    console.log("Green disappeared!");
+    document.getElementById("dot2").style.display = 'none';
+  }
+  document.getElementById("dot3").onclick = function(){
+    console.log("Blue disappeared!");
+    document.getElementById("dot3").style.display = 'none';
+  }
+  </script>
+
+</body>
+</html>
