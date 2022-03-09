@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+#outerGameBlock {
+    height: 290px;
+    width: 250px;
+    background-color: rgb(216, 216, 216);
+    text-align: center;
+    display: inline-block;
+}
+
+#innerGameBlock {
+    height: 205px;
+    width: 200px;
+    background-color: rgb(216, 216, 216);
+    display: inline-block;
+    text-align: left;
+
+    outline-style: solid;
+    outline-width: 2px;
+    outline-color: white;
+}
+
+input {
+  width: 10%;
+}
+
+p {
+    margin-left: 5%;
+}
+
+button {
+    padding: 4px 10px;
+    background-color: orange;
+    color: white;
+    border-radius: 10%;
+}
+</style>
+</head>
+<body>
+
+<div style="text-align:center">
+  <span id="outerGameBlock">
+    <h3 id="gameTitle">Multiplication game</h3>
+
+    <span id="innerGameBlock">
+        <p> 
+            <span id="math0"></span> 
+            <input id="mathInput0" type="text"></input> 
+            <span id="mathResult0"></span> 
+        </p>
+        <p> 
+            <span id="math1"></span> 
+            <input id="mathInput1" type="text"></input> 
+            <span id="mathResult1"></span> 
+        </p>
+        <p> 
+            <span id="math2"></span> 
+            <input id="mathInput2" type="text"></input> 
+            <span id="mathResult2"></span> 
+        </p>
+        <p>
+            <span id="result">Do the multiplications!</span>
+        </p>
+        <p style="text-align:center; margin-left:0%;">
+            <button onclick="CheckAnswers()">Check</button>
+            <button onclick="GenerateNumbers()">Reset</button>
+            <button onclick="ShowAnswers()">Show</button>
+        </p>
+    </span>
+  </span>
+</div>
+
+<script type="text/javascript">
+
+    //Array used for storing the answers of the multiplications
+    let answers = new Array();
+
+
+    //Function used for generating the multiplication numbers and results
+    function GenerateNumbers()
+    {
+        //Array used for storing the numbers used for multiplications
+        let numbers = new Array();
+
+        //This resets the text under the multiplications 
+        document.getElementById("result").innerHTML = "Solve the multiplications!"
+        document.getElementById("result").style.color = "#000000";
+
+
+        //For loop used for removing the smileys
+        for(let i = 0; i < 3; i++)
+        {
+            document.getElementById("mathResult" + i).innerHTML = "";
+        }
+
+
+        //For loop used for removing the previous answers
+        for(let i = 0; i < 3; i++)
+        {
+            document.getElementById("mathInput" + i).value = "";
+        }
+
+
+        //For loop used for generating the 6 numbers
+        for(let i = 0; i < 6; i++)
+        {
+            numbers[i] = Math.floor(Math.random() * 11)
+        }
+
+
+        //For loop used to write the multipications
+        for(let i = 0; i < 3; i++)
+        {
+            document.getElementById("math" + i).innerHTML = numbers[i*2] + " x " + numbers[(i*2)+1] + " =";
+        }
+
+
+        //For loop used for generating the answers of the multiplications
+        for(let i = 0; i < 3; i++)
+        {
+            answers[i] = (numbers[i*2] * numbers[(i*2)+1])
+        }
+    }
+
+    //Function that shows the answers
+    function ShowAnswers()
+    {
+        for(let i = 0; i < 3; i++)
+        {
+            document.getElementById("mathInput" + i).value = answers[i];
+        }
+    }
+
+    //Function that tells you if you did the multiplications right
+    function CheckAnswers()
+    {
+        //Variable used to determine the number of right answers
+        let correct = 0;
+
+
+        //For loop that checks the correctness of the individual multiplications
+        for(let i = 0; i < 3; i++)
+        {
+            if(document.getElementById("mathInput" + i).value == answers[i])
+            {
+                document.getElementById("mathResult" + i).innerHTML = ":-)";
+                document.getElementById("mathResult" + i).style.color = "green";
+
+                //Correct answers add a point to the correct variable
+                correct++;
+            }
+            else
+            {
+                document.getElementById("mathResult" + i).innerHTML = ":-(";
+                document.getElementById("mathResult" + i).style.color = "red";
+            }
+        }
+
+
+        //This checks how many are correct
+        switch(correct)
+        {
+            case 3:
+            {
+                document.getElementById("result").innerHTML = "All correct! Well done!"
+                document.getElementById("result").style.color = "green";
+                break;
+            }
+
+            default:
+            {
+                document.getElementById("result").innerHTML = correct + "/3 Keep practicing!!"
+                document.getElementById("result").style.color = "red";
+            }
+        }
+    }
+
+    //Runs at the start, so that the first multiplications appear
+    GenerateNumbers();
+
+  </script>
+
+</body>
+</html>
