@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="UTF-8">
+<style>
+
+#shape {
+  height: 50px;
+  width: 50px;
+  background-color: rgb(0, 255, 13);
+  display: inline-block;
+  border-radius: 50%;
+
+  position: relative;
+  top: 100px;
+  left: 0px;
+}
+
+</style>
+</head>
+<body>
+
+<div style="text-align:center">
+  <h1>React game</h1>
+  <p>Click the shapes as quickly as you can</p>
+  <p>Your time: <span id="result"></span></p>
+  <span id="shape"></span>
+</div>
+
+<script type="text/javascript">
+    
+    /*Declare time at the start*/
+    let timeStart = new Date().getTime();
+
+    /*Function that brings back a random color*/
+    function randomColor()
+    {
+        return "#" + Math.floor(Math.random()*16777325).toString(16);
+    }
+
+    /*Function that records your latest time to the "your time:" text*/
+    function setTime()
+    {
+        const timeStop = new Date().getTime();
+        const timePassed = (timeStop - timeStart) / 1000;
+
+        document.getElementById("result").innerHTML = timePassed + "s";
+    }
+
+    /*Function that generates features of a shape and it's position*/
+    function shapeFeatures()
+    {
+        /*Generates the size of the shape*/
+        const shapeSize = (Math.random() * 200) + 50;
+        document.getElementById("shape").style.height = shapeSize + "px";
+        document.getElementById("shape").style.width = shapeSize + "px";
+
+        /*Decides if the shape is a cirlcle or a square*/
+        if(Math.random() > 0.5)
+        {
+            document.getElementById("shape").style.borderRadius = "50%";
+        }
+        else
+        {
+            document.getElementById("shape").style.borderRadius = "0";
+        }
+
+        /*Generates the color of the shape*/
+        document.getElementById("shape").style.backgroundColor = randomColor();
+        document.getElementById("shape").style.display = "block";
+
+        /*Generates the position of the shape*/
+        const topPos = (Math.random() * 100);
+        const leftPos = (Math.random() * 100);
+
+        /*Makes it almost impossible for the shape to leave the screen*/
+        if(leftPos < 15) leftPos = 15;
+        if(leftPos > 85) leftPos = 85;
+
+        /*Sets the position of the shape. Note that the left position is a %*/
+        document.getElementById("shape").style.top = topPos + "px"
+        document.getElementById("shape").style.left = leftPos + "%"
+
+        /*Creates a new starting time point*/
+        timeStart = new Date().getTime();
+    }
+
+
+    /*What happens when you click the shape*/
+    document.getElementById("shape").onclick = function(){
+        
+        /*Shape disappears*/
+        document.getElementById("shape").style.display = 'none';
+
+        /*Sets your time*/
+        setTime();
+
+        /*Randomly generates a new shape after 0.5s - 3s*/
+        setTimeout(shapeFeatures, (Math.random() * 2500) + 500);
+    }
+
+
+
+  </script>
+
+</body>
+</html>
