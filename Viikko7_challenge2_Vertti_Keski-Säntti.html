@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<head>
+<style>
+#result {
+  color: rgb(0, 0, 0);
+}    
+</style>
+</head>
+<body>
+    <p>How many fingers am I holding up?</p>
+    <p><input id="FingerInput" type="text"></p>
+    <p><button onclick="checkFingers()">Check fingers</button></p>
+    <p><span id="result"></span></p>
+
+    <script type="text/javascript">
+
+
+        function checkFingers()
+        {
+            //Generate fingers
+            const fingers = (Math.random() * 5) + 1;
+
+            const fingerFloor = Math.floor(fingers);
+
+
+            //Take the input to a variable
+            let fingerInput = document.getElementById("FingerInput").value;
+
+
+            //Check if the fingers and input are the same
+            if(fingerFloor == fingerInput)
+            {
+                document.getElementById("result").innerHTML = "CORRECT!";
+                document.getElementById("result").style.color = "#006400";
+            }
+            else
+            {
+                document.getElementById("result").innerHTML = "Try again! It was " + fingerFloor;
+                document.getElementById("result").style.color = "#000000";
+            }
+        }
+
+
+    </script>
+
+</body>
+</html>
