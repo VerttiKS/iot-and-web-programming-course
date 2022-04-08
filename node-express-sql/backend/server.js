@@ -71,6 +71,25 @@ app.post('/api/collectors', async (req, res) => {
     }
 })
 
+app.get('/api/collectors/:cid', async (req, res) => {
+    try{
+        const collectorId = parseInt(req.params.cid);
+
+        const client = await pool.connect();
+        const result = await client.query(
+            "SELECT * FROM collectors WHERE id = '" + collectorId + "'"
+        );
+        client.release();
+        res.status(200).json({data: result.rows});
+
+    } catch (error)
+    {
+        console.error(error);
+        res.status(500).json({message: 'Internal error'});
+    }
+
+})
+
 app.listen(5000, () => {
     console.log("BACKEND API STARTED")
 })
