@@ -8,7 +8,8 @@ const populateTable = (data) => {
 
         const idColumn = document.createElement("td");
         idColumn.className = "id-column";
-        idColumn.innerHTML = item.id;
+        idColumn.innerHTML = 
+            '<a href="collector.html">' + item.id + '</a>';
         idColumn.onclick = () => {
             sessionStorage.setItem("collectorId", item.id);
         }
@@ -58,6 +59,13 @@ async function fetchCollectors()
 //Function that sends new data
 function POSTdata()
 {
+    var checkbox = document.getElementById("tradingInput");
+    var checkBool = false;
+
+    if(checkbox.checked){
+        checkBool = true;
+    }
+
     var newPOST = new XMLHttpRequest();
     newPOST.open("POST", "http://localhost:5000/api/collectors/", true);
     newPOST.setRequestHeader('Content-Type', 'application/json');
@@ -65,8 +73,8 @@ function POSTdata()
         name: document.getElementById("nameInput").value,
         email: document.getElementById("emailInput").value,
         cars: document.getElementById("carsInput").value,
-        slogan: "New fella",
-        trading: false
+        slogan: document.getElementById("sloganInput").value,
+        trading: checkBool
     }));
 }
 

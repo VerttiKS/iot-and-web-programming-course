@@ -28,6 +28,10 @@ body {
     outline-color: rgb(0, 0, 0);
 }
 
+#tradingInput {
+    height: 40px;
+    width: 40px;
+}
 
 td {
     padding: 3px;
