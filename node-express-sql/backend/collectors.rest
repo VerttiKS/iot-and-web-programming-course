@@ -1,0 +1,14 @@
+GET http://localhost:5000/api/health HTTP/1.1
+###
+GET http://localhost:5000/api/collectors HTTP/1.1
+###
+POST http://localhost:5000/api/collectors HTTP/1.1
+content-type: application/json
+
+{
+    "name": "James Bond",
+    "email": "james.bond@i6.gov.uk",
+    "cars": "Aston Martin, BMW",
+    "slogan": "Live and let die",
+    "trading": false
+}
