@@ -1,29 +1,33 @@
-//-----------------------------------------
-//Chart area
 
+//Gotta create the chart outside of the function
 var myChart = null;
 
+//Uploads the data into a chart
 function updateChart(jsonData)
 {
-
-
     const ctx = document.getElementById('myChart').getContext('2d');
 
+
+    //Destroys old data from a chart, if any exists. This has to happen, so that new data can be uploaded
     if(myChart!=null)
     {
         myChart.destroy();
     }
 
+
+    //Puts API time data into the "labels" array
     let labels = jsonData.map(function(item) {
         return item.date_time.substr(0, 4) + '/' + item.date_time.substr(5, 2) + '/' + item.date_time.substr(8, 2) + ' ' + item.date_time.substr(11, 8);
      });
 
 
+     //Puts API value data into the "data" array
      let data = jsonData.map(function(item) {
         return item[document.getElementById("signal").value];
      });
     
 
+     //In this else if monster, we translate the signal names to Finnish and choose the chart type
      let label;
      let chartType;
 
@@ -54,6 +58,7 @@ function updateChart(jsonData)
      }
 
     
+     //Chart creation (check the documentation on chart.js website)
     myChart = new Chart(ctx, {
         type: chartType,
         data: {
@@ -89,20 +94,20 @@ function updateChart(jsonData)
 
 
 
-//-----------------------------------------
-//Scripting area
-
+//Populates the table
 const populateTable = (data) => {
 
     const table = document.getElementById("tableBody");
 
-    //Clears out the old table
+    //Clears table of data
     table.innerHTML = "";
 
+    //fills the table with new data
     data.map(item => {
+
         const row = document.createElement("tr");
 
-
+        //substr is used to collect certain letters from the data here. substr syntax is variable.substr([starting letter], [how many letters you take from there])
 
         const dateColumn = document.createElement("td");
         dateColumn.className = "date-column";
@@ -124,6 +129,8 @@ const populateTable = (data) => {
 }
 
 
+
+//Fetches data from the API
 async function fetchData()
 {
     try
@@ -147,7 +154,7 @@ async function fetchData()
 }
 
 
-
+//These listeners listen to the selections in html files
 document.getElementById("signal").addEventListener("change", function(){
     fetchData();
 })
@@ -156,4 +163,6 @@ document.getElementById("timespan").addEventListener("change", function(){
     fetchData();
 })
 
+
+//Runs when the website is loaded
 fetchData();
