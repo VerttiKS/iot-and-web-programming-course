@@ -32,3 +32,10 @@
 #### known issues
 * the month takes a long time to load, but it's the API's fault (can't fix)
 * Doesn't work on mobile phones (No plans to fix)
+
+### Release 1.3 - 25.4.2022
+* grammar fixes
+
+#### known issues
+* the month takes a long time to load, but it's the API's fault (can't fix)
+* Doesn't work on mobile phones (No plans to fix)

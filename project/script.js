@@ -38,12 +38,12 @@ function updateChart(jsonData)
      }
      else if(document.getElementById("signal").value == "wind_speed")
      {
-         label = 'Tuulennopeus';
+         label = 'Tuulen nopeus';
          chartType = 'bar'
      }
      else if(document.getElementById("signal").value == "humidity_in")
      {
-        label = 'Ilmankosteus';
+        label = 'Ilman kosteus';
         chartType = 'line'
      }
      else if(document.getElementById("signal").value == "light")
