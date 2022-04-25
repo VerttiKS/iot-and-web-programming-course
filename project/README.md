@@ -5,7 +5,7 @@
 | Header        | Header        |
 | ------------- |------------- |
 | Owner         | Vertti Keski-Säntti |
-| Project type  | Final project      |
+| Project type  | Website with weather ino      |
 
 ## Release notes
 
@@ -13,6 +13,8 @@
 * the entire project was made
 
 #### known issues
+* the month takes a long time to load, but it's the API's fault (can't fix)
+* Doesn't work on mobile phones (No plans to fix)
 * No comments in javascript
 
 
@@ -20,4 +22,5 @@
 * added comments to javascript
 
 #### known issues
-* No known issues so far
+* the month takes a long time to load, but it's the API's fault (can't fix)
+* Doesn't work on mobile phones (No plans to fix)
