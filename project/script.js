@@ -135,7 +135,7 @@ async function fetchData()
 {
     try
     {
-        const response = await fetch("http://webapi19sa-1.course.tamk.cloud/v1/weather/" + document.getElementById("signal").value + document.getElementById("timespan").value);
+        const response = await fetch("https://webapi19sa-1.course.tamk.cloud/v1/weather/" + document.getElementById("signal").value + document.getElementById("timespan").value);
 
         console.log(response);
 
